@@ -75,6 +75,14 @@
     function setDate() {
       const now = new Date();
 
+      if (now.getSeconds() === 0) {
+        const hands = document.querySelectorAll('.hand');
+        hands.forEach(hand => hand.style.transitionDuration = '0s');
+      } else {
+        const hands = document.querySelectorAll('.hand');
+        hands.forEach(hand => hand.style.transitionDuration = '');
+      }
+
       const seconds = now.getSeconds();
       const secondsDegrees = ((seconds / 60) * 360) + 90;
       const secondHand = document.querySelector('.second-hand');
