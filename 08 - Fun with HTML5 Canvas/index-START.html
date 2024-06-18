@@ -1,20 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>HTML5 Canvas</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
-</script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 Canvas</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <script>
+      const canvas = document.querySelector("#draw");
+      const context = canvas.getContext("2d");
+      let drawing = false;
+      let direction = true;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      context.lineJoin = "round";
+      context.lineCap = "round";
+      context.lineWidth = 100;
+      hue = 0;
 
-<style>
-  html, body {
-    margin: 0;
-  }
-</style>
+      let lastX = 0;
+      let lastY = 0;
 
-</body>
+      canvas.addEventListener("mousedown", startDrawing);
+      canvas.addEventListener("mouseup", stopDrawing);
+      canvas.addEventListener("mousemove", draw);
+
+      function startDrawing(e) {
+        drawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+      }
+
+      function stopDrawing(e) {
+        drawing = false;
+      }
+
+      function draw(e) {
+        if (!drawing) return;
+
+        context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+        context.beginPath();
+        context.moveTo(lastX, lastY);
+        context.lineTo(e.offsetX, e.offsetY);
+        context.stroke();
+
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+
+        hue++;
+        if (hue >= 360) {
+          hue = 0;
+        }
+        if (context.lineWidth >= 100 || context.lineWidth <= 1) {
+          direction = !direction;
+        }
+
+        if (direction) {
+          context.lineWidth++;
+        } else {
+          context.lineWidth--;
+        }
+      }
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+    </style>
+  </body>
 </html>
