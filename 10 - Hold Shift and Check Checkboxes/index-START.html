@@ -101,19 +101,19 @@
   let lastClicked;
   let inBetween = false;
 
-  const handleCheck = (bx) => {
-    if(bx.shiftKey) {
+  const handleCheck = (click) => {
+    if(click.shiftKey) {
       checkboxes.forEach(checkbox => {
         if (inBetween) {
           checkbox.checked = true;
         }
-        if (checkbox === lastClicked || checkbox === bx.originalTarget) {
+        else if (checkbox === lastClicked || checkbox === click.originalTarget) {
           inBetween = !inBetween;
         }          
       })
     }
     
-    lastClicked = bx.originalTarget;
+    lastClicked = click.originalTarget;
   }
 
   checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck)
