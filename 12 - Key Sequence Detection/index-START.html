@@ -7,6 +7,19 @@
     <link rel="icon" href="https://fav.farm/🔥" />
   </head>
   <body>
-    <script></script>
+    <script>
+      const pressed = []
+      const secret = 'test'
+
+      window.addEventListener('keyup', (k) => {
+        console.log(k)
+        pressed.push(k.key)
+        console.log(pressed)
+        if (pressed.slice(-secret.length).join('').includes(secret)) {
+          console.log('SECRET FOUND')
+          cornify_add();
+        }
+      })
+    </script>
   </body>
 </html>
