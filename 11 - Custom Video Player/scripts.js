@@ -11,8 +11,8 @@ function updateProgress() {
 	progress.style.flexBasis = `${(video.currentTime/video.duration)*100}%`
 }
 
-function scrub() {
-
+function scrub(e) {
+	video.currentTime = (e.offsetX / progressBar.offsetWidth) * video.duration;
 }
 
 function togglePlay() {
@@ -21,7 +21,7 @@ function togglePlay() {
 }
 
 function togglePauseToggleIcon() {
-	const buttonState = video.paused ? '►' : '▐▐';
+	const buttonState = video.paused ? '▶' : '❚❚';
 	pauseToggle.textContent = buttonState;
 }
 
@@ -39,8 +39,14 @@ function skip() {
 }
 
 video.addEventListener('timeupdate', updateProgress)
+video.addEventListener('click', togglePlay)
+video.addEventListener('click', togglePauseToggleIcon);
 
+let mousedown = false;
 progressBar.addEventListener('click', scrub);
+progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progressBar.addEventListener('mousedown', () => mousedown = true);
+progressBar.addEventListener('mouseup', () => mousedown = false);
 
 pauseToggle.addEventListener('click', togglePlay);
 pauseToggle.addEventListener('click', togglePauseToggleIcon);
