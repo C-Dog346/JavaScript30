@@ -42,6 +42,8 @@
 
     items.push(item)
     populateItemsList(items, itemsList)
+    localStorage.setItem('items', JSON.stringify((items)));
+    addItems.reset()
   }
 
   const populateItemsList = (list = [], listLocation) => {
@@ -55,7 +57,7 @@
   }
 
   addItems.addEventListener('submit', addItem)
-  
+
   populateItemsList(items, itemsList)
 </script>
 
