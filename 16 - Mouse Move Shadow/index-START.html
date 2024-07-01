@@ -38,28 +38,32 @@
 <script>
   const hero = document.querySelector('.hero')
   const h1 = document.querySelector('h1')
-  const walk = 200;
+  const walk = 100;
   
-  const shadows = (element) => {
-    console.log(element)
+  const shadows = (e, element) => {
 
-    const color1 = 'rgba(255, 0, 0)';
-    const color2 = 'rgba(0, 255, 0)';
-    const color3 = 'rgba(0, 0, 255)';
-    const color4 = 'rgba(255, 0, 255)';
+    const color1 = 'rgba(255, 0, 0, 0.75)';
+    const color2 = 'rgba(0, 255, 0,0.75)';
+    const color3 = 'rgba(0, 0, 255, 0.75)';
+    const color4 = 'rgba(255, 0, 255, 0.75)';
 
-    const xWalk = element.offsetLeft * ;
-    const yWalk = elemtn.offsetTop * ;
+    const xWalk = Math.round((e.pageX - element.offsetLeft - (element.offsetWidth / 2)) / element.offsetWidth * walk);
+    const yWalk = Math.round((e.pageY - element.offsetTop - (element.offsetHeight / 2)) / element.offsetHeight * walk);
+
+    console.log(e.pageX, e.pageY)
+    console.log(xWalk, yWalk)
 
     element.style.textShadow = `
-    #${color1} ${xWalk}px ${yWalk}px,
-    #${color2} ${xWalk * -1}px ${yWalk}px,
-    #${color3} ${xWalk * -1}px ${yWalk * -1}px,
-    #${color4} ${xWalk}px ${yWalk * -1}px, 
+    ${color1} ${xWalk}px ${yWalk}px,
+    ${color2} ${xWalk * -1}px ${yWalk}px,
+    ${color3} ${xWalk * -1}px ${yWalk * -1}px,
+    ${color4} ${xWalk}px ${yWalk * -1}px
     `;
   }
 
-  hero.addEventListener('mousemove', shadows(h1))
+
+
+  hero.addEventListener('mousemove', (e) => {shadows(e, h1)});  
 </script>
 </body>
 </html>
