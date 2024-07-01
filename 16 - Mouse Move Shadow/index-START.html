@@ -36,14 +36,30 @@
   </style>
 
 <script>
-  hero = document.querySelector('hero')
-  h1 = document.querySelector('h1')
+  const hero = document.querySelector('.hero')
+  const h1 = document.querySelector('h1')
+  const walk = 200;
   
-  const shadow = (color, direction) => {
-    console.log('h')
+  const shadows = (element) => {
+    console.log(element)
+
+    const color1 = 'rgba(255, 0, 0)';
+    const color2 = 'rgba(0, 255, 0)';
+    const color3 = 'rgba(0, 0, 255)';
+    const color4 = 'rgba(255, 0, 255)';
+
+    const xWalk = element.offsetLeft * ;
+    const yWalk = elemtn.offsetTop * ;
+
+    element.style.textShadow = `
+    #${color1} ${xWalk}px ${yWalk}px,
+    #${color2} ${xWalk * -1}px ${yWalk}px,
+    #${color3} ${xWalk * -1}px ${yWalk * -1}px,
+    #${color4} ${xWalk}px ${yWalk * -1}px, 
+    `;
   }
 
-  hero.addEventListener('mousemove', shadow)
+  hero.addEventListener('mousemove', shadows(h1))
 </script>
 </body>
 </html>
