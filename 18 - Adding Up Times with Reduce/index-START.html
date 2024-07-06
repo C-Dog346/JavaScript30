@@ -185,23 +185,24 @@
 <script>
   dataTimes = document.querySelectorAll('li[data-time]')
 
-  const addTime = (dataTimes) => {
+  const addTimeSeconds = (dataTimes) => {
     let totalTime = 0;
     
     dataTimes.forEach(element => {
       const times = (element.dataset.time).split(':');
-      totalTime += parseInt(times[0]) / 60 + parseInt(times[1]);
+      totalTime += parseInt(times[0]) * 60 + parseInt(times[1]);
     });
 
     return totalTime;
   }
 
-  const totalTime = addTime(dataTimes)
+  const totalTime = addTimeSeconds(dataTimes)
 
-  const totalHours = Math.round((totalTime / 60))
+  const hours = Math.floor(totalTime / 3600)
+  const minutes = Math.floor(totalTime % 3600 / 60)
+  const seconds = totalTime % 60
   
-  console.log(totalTime)
-  console.log(totalHours)
+  console.log(hours, minutes, seconds)
 </script>
 </body>
 </html>
