@@ -190,7 +190,7 @@
     
     dataTimes.forEach(element => {
       const times = (element.dataset.time).split(':');
-      totalTime += parseInt(times[0]) * 60 + parseInt(times[1]);
+      totalTime += parseInt(times[0]) / 60 + parseInt(times[1]);
     });
 
     return totalTime;
@@ -198,7 +198,7 @@
 
   const totalTime = addTime(dataTimes)
 
-  const totalHours = totalTime / 60
+  const totalHours = Math.round((totalTime / 60))
   
   console.log(totalTime)
   console.log(totalHours)
