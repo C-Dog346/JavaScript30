@@ -183,6 +183,21 @@
     </li>
   </ul>
 <script>
+  dataTimes = document.querySelectorAll('li[data-time]')
+
+  const addTime = (dataTimes) => {
+    let totalTime = 0;
+    
+    dataTimes.forEach(element => {
+      const times = (element.dataset.time).split(':');
+      totalTime += parseInt(times[0]) * 60 + parseInt(times[1]);
+    });
+
+    return totalTime;
+  }
+
+  const totalTime = addTime(dataTimes)
+  console.log(totalTime)
 </script>
 </body>
 </html>
