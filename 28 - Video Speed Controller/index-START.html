@@ -23,11 +23,10 @@
   const handleChange = (e) => {
     const min = 0.4;
     const max = 4;
-    const height = e.offsetY;
-    const percent = height / speed.offsetHeight;
-    const playbackRate = percent * (max - min) + min;
+    const height = e.offsetY * 100 / speed.offsetHeight;
+    const playbackRate = (height / 100) * (max - min) + min;
     
-    speedbar.style.height = `${height}px`;
+    speedbar.style.height = `${height}%`;
     speedbar.innerHTML = `${playbackRate.toFixed(2)}×`;
     video.playbackRate = playbackRate;
   }
