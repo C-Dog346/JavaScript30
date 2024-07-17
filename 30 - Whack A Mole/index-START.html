@@ -73,18 +73,20 @@
         const hole = randomHole();
         hole.classList.add("up");
         setInterval(() => {
-          duck(hole);
+          if (hole.classList.contains("up")) {
+            duck(hole);
+          }
         }, 1000);
       };
 
       const startGame = () => {
         score = 0;
         timer = 0;
-        const delay = randomTime(300, 1500);
+        const delay = randomTime(300, 1100);
         const intervalId = setInterval(() => pop(), delay);
         setTimeout(() => {
           clearInterval(intervalId);
-        }, 10000);
+        }, 20000);
       };
 
       moles.forEach((mole) => {
